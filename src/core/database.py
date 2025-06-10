@@ -30,8 +30,11 @@ class Base(DeclarativeBase):
 
 async def get_db():
     async with async_session_maker() as session:
-        yield session
-        await session.close()
+        try:
+            yield session
+        except:
+            await session.rollback()
+            raise
 
 
 SessionDep = Annotated[AsyncSession, Depends(get_db)]
