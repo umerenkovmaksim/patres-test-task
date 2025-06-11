@@ -10,7 +10,7 @@ from src.librarians.deps import CurLibrarianDep
 from src.librarians.schemas import SLibrarian, SLibrarianCreate, Token
 from src.librarians.service import authenticate_librarian
 
-router = APIRouter(prefix="/librarians")
+router = APIRouter(prefix="/librarians", tags=["Librarians"])
 
 
 @router.post("/register")
