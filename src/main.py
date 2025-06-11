@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from src.books.router import router as books_router
 from src.core.config import settings
 from src.librarians.router import router as librarians_router
+from src.readers.router import router as readers_router
 
 app = FastAPI(debug=settings.DEBUG)
 
@@ -14,3 +15,4 @@ async def ping():
 
 app.include_router(librarians_router)
 app.include_router(books_router)
+app.include_router(readers_router)
