@@ -43,9 +43,7 @@ class BorrowedBook(BaseModel):
 class BorrowBook(BaseModel):
     reader_id: int
     book_id: int
-    borrow_date: datetime | None = None
 
 
 class ReturnBook(BaseModel):
     borrow_id: int
-    return_date: datetime | None = None

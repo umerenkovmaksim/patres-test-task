@@ -60,9 +60,7 @@ async def borrow_book(
     librarian: CurLibrarianDep,
     borrow_data: BorrowBook,
 ):
-    return await BookService.borrow_book(
-        session, **borrow_data.model_dump(exclude_none=True)
-    )
+    return await BookService.borrow_book(session, **borrow_data.model_dump())
 
 
 @router.post("/return", status_code=status.HTTP_204_NO_CONTENT)
@@ -71,4 +69,4 @@ async def return_book(
     librarian: CurLibrarianDep,
     return_data: ReturnBook,
 ):
-    await BookService.return_book(session, **return_data.model_dump(exclude_none=True))
+    await BookService.return_book(session, **return_data.model_dump())

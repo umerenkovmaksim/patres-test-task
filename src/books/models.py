@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import datetime
 from typing import TYPE_CHECKING
 
 from sqlalchemy import CheckConstraint, ForeignKey
@@ -29,5 +29,5 @@ class BorrowedBook(Base):
     id: Mapped[int_pk]
     book_id: Mapped[int] = mapped_column(ForeignKey("books.id"))
     reader_id: Mapped[int] = mapped_column(ForeignKey("readers.id"))
-    borrow_date: Mapped[datetime] = mapped_column(default=datetime.now(timezone.utc))
+    borrow_date: Mapped[datetime] = mapped_column(default=datetime.now())
     return_date: Mapped[datetime | None]
