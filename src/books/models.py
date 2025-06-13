@@ -16,6 +16,7 @@ class Book(Base):
     id: Mapped[int_pk]
     name: Mapped[str]
     author: Mapped[str]
+    description: Mapped[str | None]
     year: Mapped[int | None]
     isbn: Mapped[str | None] = mapped_column(unique=True)
     copies: Mapped[int] = mapped_column(default=1)

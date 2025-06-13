@@ -9,6 +9,7 @@ class SBook(BaseModel):
     id: int
     name: str
     author: str
+    description: str | None
     year: int | None
     isbn: str | None
     copies: int
@@ -17,6 +18,7 @@ class SBook(BaseModel):
 class SBookCreate(BaseModel):
     name: str = Field(..., min_length=1)
     author: str = Field(..., min_length=1)
+    description: str | None = Field(None)
     year: int | None = Field(None)
     isbn: str | None = Field(None)
     copies: int = Field(1, ge=0)
@@ -25,6 +27,7 @@ class SBookCreate(BaseModel):
 class SBookUpdate(BaseModel):
     name: str | None = Field(None, min_length=1)
     author: str | None = Field(None, min_length=1)
+    description: str | None = Field(None)
     year: int | None = Field(None)
     isbn: str | None = Field(None)
     copies: int | None = Field(None, ge=0)
