@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from pydantic import BaseModel, ConfigDict, Field
 
 
@@ -26,3 +28,24 @@ class SBookUpdate(BaseModel):
     year: int | None = Field(None)
     isbn: str | None = Field(None)
     copies: int | None = Field(None, ge=0)
+
+
+class BorrowedBook(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    book_id: int
+    reader_id: int
+    borrow_date: datetime
+    return_date: datetime | None
+
+
+class BorrowBook(BaseModel):
+    reader_id: int
+    book_id: int
+    borrow_date: datetime | None = None
+
+
+class ReturnBook(BaseModel):
+    borrow_id: int
+    return_date: datetime | None = None

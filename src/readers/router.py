@@ -1,5 +1,7 @@
 from fastapi import APIRouter, status
 
+from src.books.schemas import BorrowedBook
+from src.books.service import BookService
 from src.core.database import SessionDep
 from src.librarians.deps import CurLibrarianDep
 from src.readers.dao import reader_dao
@@ -42,3 +44,8 @@ async def patch_reader(
 @router.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_reader(session: SessionDep, librarian: CurLibrarianDep, id: int):
     await reader_dao.delete(session, id)
+
+
+@router.get("/{id}/borrowed", response_model=list[BorrowedBook])
+async def get_reader_books(session: SessionDep, librarian: CurLibrarianDep, id: int):
+    return await BookService.get_reader_books(session, id)

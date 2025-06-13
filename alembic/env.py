@@ -22,7 +22,7 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 from src.core.database import Base
 from src.librarians.models import Librarian
-from src.books.models import Book
+from src.books.models import Book, BorrowedBook
 from src.readers.models import Reader
 
 target_metadata = Base.metadata
