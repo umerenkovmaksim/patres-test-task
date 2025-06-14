@@ -8,4 +8,4 @@ class Librarian(Base):
 
     id: Mapped[int_pk]
     email: Mapped[str] = mapped_column(unique=True)
-    password: Mapped[str]
+    hashed_password: Mapped[str]

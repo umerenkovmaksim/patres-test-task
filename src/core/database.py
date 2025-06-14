@@ -23,7 +23,7 @@ class Base(DeclarativeBase):
     pass
 
 
-async def get_db():
+async def get_session():
     async with async_session_maker() as session:
         try:
             yield session
@@ -32,4 +32,4 @@ async def get_db():
             raise
 
 
-SessionDep = Annotated[AsyncSession, Depends(get_db)]
+SessionDep = Annotated[AsyncSession, Depends(get_session)]

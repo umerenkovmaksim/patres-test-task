@@ -9,6 +9,6 @@ async def authenticate_librarian(
     session: AsyncSession, email: str, password: str
 ) -> Librarian | None:
     librarian = await librarian_dao.get_by_email(session, email)
-    if not librarian or not verify_password(password, librarian.password):
+    if not librarian or not verify_password(password, librarian.hashed_password):
         return None
     return librarian

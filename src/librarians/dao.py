@@ -10,7 +10,8 @@ class LibrarianDAO(BaseDAO[Librarian]):
         super().__init__(Librarian)
 
     async def create(self, session: AsyncSession, **kwargs) -> Librarian:
-        kwargs["password"] = hash_password(kwargs["password"])
+        kwargs["hashed_password"] = hash_password(kwargs["password"])
+        del kwargs["password"]
         return await super().create(session, **kwargs)
 
     async def get_by_email(self, session: AsyncSession, email: str) -> Librarian | None:
